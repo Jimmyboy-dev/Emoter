@@ -1,0 +1,49 @@
+{
+  "author": "Jimmy Vrana",
+  "dependencies": {
+    "axios": "^0.24.0"
+  },
+  "description": "A Library that will handle access to all Emote providers for Twitch.tv including Twitch themselves. It also includes parsing messages from twitch chat (and in general).",
+  "devDependencies": {
+    "@types/node": "^17.0.2",
+    "typescript": "^4.5.4",
+    "vite": "^2.7.6"
+  },
+  "displayName": "Emoter",
+  "exports": {
+    ".": {
+      "import": "./lib/index.esm.js",
+      "require": "./lib/index.js"
+    }
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib",
+    "types",
+    "!lib/**/*.d.ts.map"
+  ],
+  "keywords": [
+    "twitch",
+    "auth",
+    "authentication",
+    "oauth",
+    "stream",
+    "bot"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "module": "lib/index.es.js",
+  "name": "emoter",
+  "repository": "https://github.com/devJimmyboy/emote-parser",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "run-all dev:*",
+    "dev:tsc": "tsc",
+    "dev:vite": "vite build",
+    "rebuild": "rimraf ./lib && vite build",
+    "types": "tsc --emitDeclarationOnly"
+  },
+  "types": "./types/index.d.ts",
+  "version": "0.1.0"
+}
