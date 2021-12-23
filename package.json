@@ -34,8 +34,11 @@
   "license": "MIT",
   "main": "lib/index.js",
   "module": "lib/index.es.js",
-  "name": "emoter",
-  "repository": "https://github.com/devJimmyboy/emote-parser",
+  "name": "@jimmyboy/emoter",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devJimmyboy/emote-parser.git"
+  },
   "scripts": {
     "build": "tsc && vite build",
     "dev": "run-all dev:*",
@@ -45,5 +48,12 @@
     "types": "tsc --emitDeclarationOnly"
   },
   "types": "./types/index.d.ts",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "bugs": {
+    "url": "https://github.com/devJimmyboy/emote-parser/issues"
+  },
+  "homepage": "https://github.com/devJimmyboy/emote-parser#readme",
+  "directories": {
+    "lib": "lib"
+  }
 }

@@ -30,7 +30,8 @@ export class Emoter {
   badges: BadgeMap
   badgeObj = {}
 
-  constructor() {
+  constructor(channel?: string) {
+    this.channel = channel
     this.emotes = new Map()
     this.badges = new Map()
     this.providers = {
@@ -84,34 +85,18 @@ export class Emoter {
      * registered somewhere, there'll just be empty lists here).
      * @param
      */
-  async getEmoteCollection(
+  async getEmotes(
     channel: string,
-    options: EmoteCollectionOptions = { includeGlobal: true, include7tv: false },
-  ): Promise<EmoteCollection> {
-    const { includeGlobal = true, include7tv = false } = options;
-    const bttv = await this.getBetterTTVChannel(channel);
-    const ffz = await this.getFFZChannel(channel);
-    const stv = include7tv ? await this.getSevenTVChannel(channel) : undefined;
-    const bttvGlobal = includeGlobal ? await this.getBetterTTVGlobalEmotes() : undefined;
-    const ffzGlobal = includeGlobal ? await this.getFFZGlobalEmotes() : undefined;
-    const stvGlobal = includeGlobal ? await this.getSevenTVGlobalEmotes() : undefined;
-    const ffzGlobalSets: FFZEmoteSet[] = [];
-    if (ffzGlobal !== undefined) {
-      for (const set of ffzGlobal.default_sets) {
-        const setObj = ffzGlobal.sets[set.toString()];
-        if (setObj !== undefined) {
-          ffzGlobalSets.push(setObj);
-        }
-      }
-    }
+    options: EmoteCollectionOptions = { include7tv: false },
+  ) {
+    const { include7tv = false } = options;
+    const bttv = await this.providers.bttv.normalizeResponse(channel);
+    const ffz = await this.providers.ffz.normalizeResponse(channel);
+    const stv = include7tv ? await this.providers.stv.normalizeResponse(channel) : undefined;
     return {
-      bttvChannel: bttv === undefined ? [] : bttv.channelEmotes,
-      bttvShared: bttv === undefined ? [] : bttv.sharedEmotes,
-      bttvGlobal: bttvGlobal === undefined ? [] : bttvGlobal,
-      ffz: ffz === undefined ? [] : Object.values(ffz.sets),
-      ffzGlobal: ffzGlobalSets,
+      bttv: bttv === undefined ? [] : bttv,
+      ffz: ffz === undefined ? [] : ffz,
       stv: stv === undefined ? [] : stv,
-      stvGlobal: stvGlobal === undefined ? [] : stvGlobal,
     };
   }
 
@@ -246,6 +231,8 @@ export class Emoter {
     return url
   }
 }
+
+export type EmoteCollectionOptions = { include7tv: boolean }
 
 export type EmoterMap = Map<string, string[]>
 export type BadgeMap = Map<string, string[]>
