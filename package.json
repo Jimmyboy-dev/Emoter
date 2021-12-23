@@ -37,7 +37,7 @@
   "name": "@jimmyboy/emoter",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devJimmyboy/emote-parser.git"
+    "url": "git+https://github.com/Jimmyboy-dev/Emoter.git"
   },
   "scripts": {
     "build": "tsc && vite build",
@@ -50,9 +50,9 @@
   "types": "./types/index.d.ts",
   "version": "0.1.0",
   "bugs": {
-    "url": "https://github.com/devJimmyboy/emote-parser/issues"
+    "url": "https://github.com/Jimmyboy-dev/Emoter/issues"
   },
-  "homepage": "https://github.com/devJimmyboy/emote-parser#readme",
+  "homepage": "https://github.com/Jimmyboy-dev/Emoter#readme",
   "directories": {
     "lib": "lib"
   }
